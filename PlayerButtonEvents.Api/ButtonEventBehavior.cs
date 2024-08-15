@@ -6,7 +6,7 @@ namespace PlayerButtonEvents.Api;
 
 public class ButtonEventBehavior(ButtonEvents buttonEvents)
 {
-    private Dictionary<int, PlayerButtons> _buttons = new();
+    private readonly Dictionary<int, PlayerButtons> _buttons = new();
 
     public void OnLoad(BasePlugin plugin)
     {
@@ -35,8 +35,7 @@ public class ButtonEventBehavior(ButtonEvents buttonEvents)
             if (player.Handle == IntPtr.Zero) continue;
             if (player.Connected != PlayerConnectedState.PlayerConnected) continue;
 
-            PlayerButtons lastButtons;
-            if (!_buttons.TryGetValue(player.Slot, out lastButtons))
+            if (!_buttons.TryGetValue(player.Slot, out var lastButtons))
             {
                 lastButtons = player.Buttons;
             }
@@ -49,7 +48,7 @@ public class ButtonEventBehavior(ButtonEvents buttonEvents)
 
             for (var i = 0; i < 64; i++)
             {
-                ulong mask = 1ul << i;
+                var mask = 1ul << i;
 
                 if (((ulong)delta & mask) == 0) continue;
 

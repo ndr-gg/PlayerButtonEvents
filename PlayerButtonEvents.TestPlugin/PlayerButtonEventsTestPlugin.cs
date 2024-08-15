@@ -31,13 +31,13 @@ public class PlayerButtonEventsTestPlugin(ButtonEventBehavior buttonEventBehavio
     {
         var controller = Utilities.GetPlayerFromSlot(e.Slot);
 
-        Server.PrintToChatAll($"Button pressed: {e.Button} by {controller.PlayerName}");
+        Server.PrintToChatAll($"Button pressed: {e.Button} by {controller?.PlayerName}");
     }
 
     private void OnButtonReleased(object? sender, ButtonEventArgs e)
     {
         var controller = Utilities.GetPlayerFromSlot(e.Slot);
 
-        Server.PrintToChatAll($"Button released: {e.Button} by {controller.PlayerName}");
+        Server.PrintToChatAll($"Button released: {e.Button} by {controller?.PlayerName}");
     }
 }
