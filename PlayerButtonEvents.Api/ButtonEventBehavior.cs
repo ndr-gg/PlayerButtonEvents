@@ -21,26 +21,26 @@ namespace PlayerButtonEvents.Api;
 
 public class ButtonEventBehavior(ButtonEvents buttonEvents)
 {
-    private readonly Dictionary<int, PlayerButtons> _buttons = new();
-
     public void OnLoad(BasePlugin plugin)
     {
-        plugin.Logger.LogInformation("Registering PlayerButtonEvents");
+        plugin.Logger.LogTrace("Registering PlayerButtonEvents");
 
         plugin.RegisterListener<Listeners.OnTick>(OnTick);
 
-        plugin.Logger.LogInformation("Registered PlayerButtonEvents");
+        plugin.Logger.LogTrace("Registered PlayerButtonEvents");
     }
 
 
     public void OnUnload(BasePlugin plugin)
     {
-        plugin.Logger.LogInformation("Unregistering PlayerButtonEvents");
+        plugin.Logger.LogTrace("Unregistering PlayerButtonEvents");
 
         plugin.RemoveListener<Listeners.OnTick>(OnTick);
 
-        plugin.Logger.LogInformation("Unregistered PlayerButtonEvents");
+        plugin.Logger.LogTrace("Unregistered PlayerButtonEvents");
     }
+
+    private readonly Dictionary<int, PlayerButtons> _buttons = new();
 
     private void OnTick()
     {
