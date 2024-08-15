@@ -21,9 +21,9 @@ jobs:
         run: |
           git log --pretty=format:'%d %s' ${GITHUB_REF} | perl -pe 's| \(.*tag: v(\d+.\d+.\d+(-preview\d{3})?)(, .*?)*\)|\n## \1\n|g' > RELEASE-NOTES
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${VERSION}
+        run: dotnet build --configuration Release /p:Version=${VERSION} /p:PublicRelease=true
       - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+        run: dotnet pack --configuration Release /p:Version=${VERSION} /p:PublicRelease=true --no-build --output .
       - name: Push
         run: dotnet nuget push **/PlayerButtonEvents.Api.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
         env:
