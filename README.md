@@ -13,3 +13,7 @@ PlayerButtonEvents is a library that provides events for handling button presses
 ## Usage
 
 - [View Package README](PlayerButtonEvents.Api/docs/README.md)
+
+
+## License
+- [MIT](LICENSE.md)
