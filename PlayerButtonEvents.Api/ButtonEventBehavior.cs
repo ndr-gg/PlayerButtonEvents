@@ -44,6 +44,8 @@ public class ButtonEventBehavior(ButtonEvents buttonEvents)
 
     private void OnTick()
     {
+        var tick = Server.TickCount;
+
         foreach (var player in Utilities.GetPlayers())
         {
             if (!player.IsValid) continue;
@@ -70,7 +72,7 @@ public class ButtonEventBehavior(ButtonEvents buttonEvents)
                 var pressed = ((ulong)player.Buttons & mask) != 0;
 
                 buttonEvents.OnStateChanged(this,
-                    new ButtonEventArgs(player.Slot, (PlayerButtons)((ulong)delta & mask), pressed));
+                    new ButtonEventArgs(player.Slot, (PlayerButtons)((ulong)delta & mask), pressed, tick));
             }
         }
     }

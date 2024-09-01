@@ -17,7 +17,7 @@ using CounterStrikeSharp.API;
 
 namespace PlayerButtonEvents.Api;
 
-public class ButtonEventArgs(int slot, PlayerButtons button, bool isPressed)
+public class ButtonEventArgs(int slot, PlayerButtons button, bool isPressed, int tickStamp)
 {
     /// <summary>
     /// The slot the player takes up in the server, get the controller with <see cref="Utilities.GetPlayerFromSlot"/>
@@ -33,4 +33,9 @@ public class ButtonEventArgs(int slot, PlayerButtons button, bool isPressed)
     /// Whether the button has been pressed or released, only really useful if you're doing a <see cref="ButtonEvents.ButtonStateChanged"/> hook
     /// </summary>
     public readonly bool IsPressed = isPressed;
+
+    /// <summary>
+    /// The number of ticks (acquired from <see cref="Server.TickCount"/>) when the event was created
+    /// </summary>
+    public readonly int TickStamp = tickStamp;
 }
